@@ -35,7 +35,7 @@ void write_brightness(const char* value)
 {
 	FILE * file = open_file("w");
 	int result;
-	size_t value_size = strlen(value) + 1;
+	size_t value_size = strlen(value);
 
 	result = fprintf(file, "%s", value);
 
@@ -43,7 +43,7 @@ void write_brightness(const char* value)
 		perror("fprintf");
 	}
 	else if ((size_t)result != value_size) {
-		printf("Something went wrong while writing to file");
+		printf("Something went wrong while writing to file\nWritten: %d\nExpected: %lu", result, value_size);
 	}
 
 	
